@@ -31,14 +31,15 @@ function Navbar() {
   return (
     <motion.nav
       variants={{
-        hidden: { y: "-100%" },
-        visible: { y: 0 },
+        hidden: { y: "-150%", x: "-50%" },
+        visible: { y: 0, x: "-50%" },
       }}
+      initial="visible"
       animate={hidden ? "hidden" : "visible"}
       transition={{ duration: 0.3, ease: "easeInOut" }}
       className={`fixed ${
         hidden ? "shadow-none" : "shadow-md"
-      } shadow-primary flex items-center justify-between py-4 px-8 lg:px-20 mx-auto w-full bg-background -translate-y-full z-10`}
+      } shadow-primary flex items-center justify-between py-4 px-8 lg:px-20 w-[97%] z-10 bg-gray-500 rounded-full bg-clip-padding backdrop-filter backdrop-blur-2xl bg-opacity-30 mt-6 -translate-x-1/2 left-1/2`}
     >
       <div className="text-2xl text-primary font-extrabold">CaptivateAI.</div>
       <div className="flex gap-1 items-center">
