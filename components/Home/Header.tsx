@@ -10,6 +10,7 @@ function Header() {
       initial={{ opacity: 0, y: -5 }}
       animate={{ opacity: 1, y: 0 }}
       className=" h-screen flex  flex-col"
+      id="promptSection"
     >
       <h2 className="text-2xl mt-32 text-center">
         Prompt it with{" "}

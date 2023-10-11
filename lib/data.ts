@@ -26,3 +26,13 @@ export const questions = [
     answer: "What if AI could add that personal touch effortlessly?",
   },
 ];
+
+export const styles = [
+  "professional",
+  "friendly",
+  "funny",
+  "humourous",
+  "positive",
+  "convincing",
+  "trendy / Gen Z",
+];
