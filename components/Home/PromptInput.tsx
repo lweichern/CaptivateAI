@@ -7,6 +7,7 @@ import LoadingButton from "../LoadingButton";
 import { CheckCheck, Copy, SendHorizonal } from "lucide-react";
 import { Separator } from "../ui/separator";
 import { useState } from "react";
+import { motion } from "framer-motion";
 
 function PromptInput() {
   const [copyIcon, setCopyIcon] = useState(true);
@@ -24,7 +25,18 @@ function PromptInput() {
   };
 
   return (
-    <div className=" mx-auto w-full max-w-3xl px-8 md:px-14 lg:px-24">
+    <motion.div
+      className=" mx-auto w-full max-w-3xl px-8 md:px-14 lg:px-24"
+      initial={{ opacity: 0, y: 100 }}
+      whileInView={{ opacity: 1, y: 0 }}
+      viewport={{ once: true }}
+      transition={{ delay: 0.1, duration: 0.7 }}
+    >
+      <h2 className="text-2xl mt-32 text-center">
+        Prompt it with{" "}
+        <span className="text-primary font-semibold">CaptivateAI</span>!
+      </h2>
+      <br />
       <form onSubmit={handleSubmit} className="grid  gap-2 ">
         <Textarea
           placeholder="Describe your post..."
@@ -83,7 +95,7 @@ function PromptInput() {
               })}
           </div>
         )}
-    </div>
+    </motion.div>
   );
 }
 
