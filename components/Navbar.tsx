@@ -39,9 +39,9 @@ function Navbar() {
       transition={{ duration: 0.3, ease: "easeInOut" }}
       className={`fixed ${
         hidden ? "shadow-none" : "shadow-md"
-      } shadow-primary flex items-center justify-between py-4 px-8 lg:px-20 w-[97%] z-10 bg-gray-500 rounded-full bg-clip-padding backdrop-filter backdrop-blur-2xl bg-opacity-30 mt-6 -translate-x-1/2 left-1/2`}
+      } shadow-primary flex items-center justify-between py-4 px-8 lg:px-20 w-[97%] z-10 bg-primary rounded-full bg-clip-padding backdrop-filter backdrop-blur-2xl bg-opacity-30 mt-6 -translate-x-1/2 left-1/2`}
     >
-      <div className="text-2xl text-primary font-extrabold">CaptivateAI.</div>
+      <div className="text-2xl text-white font-extrabold">CaptivateAI.</div>
       <div className="flex gap-1 items-center">
         <div className="md:hidden flex items-center">
           <AnimatePresence mode="wait">

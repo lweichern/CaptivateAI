@@ -13,7 +13,7 @@ function CardContainer({ question }: propType) {
     offset: ["end end", "end start"],
   });
 
-  const opacity = useTransform(scrollYProgress, [0, 0.5, 1], [0.05, 1, 0.05]);
+  const opacity = useTransform(scrollYProgress, [0, 0.5, 1], [0, 1, 0]);
 
   return (
     <motion.h2

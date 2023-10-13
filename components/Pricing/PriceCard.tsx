@@ -22,9 +22,9 @@ function PriceCard({ subscriptionType, price, features }: PropType) {
     <Card
       className={`${
         subscriptionType == "Pro" && "border-4 border-primary"
-      } w-full`}
+      } w-full group`}
     >
-      <CardHeader>
+      <CardHeader className="group-hover:skew-y-6 group-hover:translate-y-[15px] duration-100">
         <CardTitle>{subscriptionType}</CardTitle>
         <CardDescription>
           {price ? `$${price.toString()} / month` : "Free"}

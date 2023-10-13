@@ -9,8 +9,8 @@ function Hero() {
   return (
     <section className="h-screen flex justify-center items-center ">
       <div className="flex flex-col md:flex-row gap-16">
-        <div className="text-4xl text-center lg:text-left">
-          <div className="mb-6">
+        <div className=" text-center lg:text-left flex flex-col justify-center gap-3 w-1/2">
+          <h2 className="mb-6 text-3xl md:text-4xl lg:text-5xl">
             Activate your{" "}
             <span className=" underline decoration-primary">
               social presence
@@ -18,21 +18,24 @@ function Hero() {
             with
             <br />
             <span className="text-primary font-semibold"> Captivate AI</span>
-          </div>
-          <Button>
+          </h2>
+          <span className="text-lg md:text-2xl lg:text-3xl">
+            Use AI to generate captions or descriptions for your products.
+          </span>
+          <Button className=" max-w-[100px] mx-auto lg:mx-0">
             <ScrollLink to="promptSection" smooth={true}>
               Try It Out
             </ScrollLink>
           </Button>
         </div>
-        <div className=" flex-col hidden lg:flex">
-          <div className="flex">
-            <Image src="/twitter.jpg" width="64" height="50" alt="" />
-            <Image src="/instagram.jpg" width="64" height="50" alt="" />
-          </div>
-          <div className="w-full relative">
-            <Image src="/x.jpg" fill alt="" />
-          </div>
+        <div className="flex-col hidden lg:flex w-1/2">
+          <Image
+            src="/twitter.jpg"
+            alt=""
+            width="50"
+            height="50"
+            style={{ width: "100%" }}
+          />
         </div>
       </div>
     </section>
