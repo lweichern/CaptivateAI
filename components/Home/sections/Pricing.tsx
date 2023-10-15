@@ -3,10 +3,13 @@
 import React from "react";
 import { motion, AnimatePresence } from "framer-motion";
 import PriceCard from "@/components/Pricing/PriceCard";
+import { useAppSelector } from "@/app/redux/store";
 
 function Pricing() {
+  const style = useAppSelector((state) => state.styleReducer);
   return (
     <main>
+      Styles: {style}
       <section className="w-full max-w-6xl px-8 md:px-14 lg:px-24 my-2 mx-auto">
         <h2 className="text-3xl text-center my-7">Pricing</h2>
 

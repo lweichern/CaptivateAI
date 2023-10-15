@@ -28,11 +28,32 @@ export const questions = [
 ];
 
 export const styles = [
-  "professional",
-  "friendly",
-  "funny",
-  "humourous",
-  "positive",
-  "convincing",
-  "trendy / Gen Z",
+  {
+    value: "professional",
+    label: "Professional",
+  },
+  {
+    value: "friendly",
+    label: "Friendly",
+  },
+  {
+    value: "funny",
+    label: "Funny",
+  },
+  {
+    value: "humourous",
+    label: "Humourous",
+  },
+  {
+    value: "positive",
+    label: "Positive",
+  },
+  {
+    value: "convincing",
+    label: "Convincing",
+  },
+  {
+    value: "trendy",
+    label: "Trendy / Gen Z",
+  },
 ];

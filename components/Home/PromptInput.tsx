@@ -8,9 +8,11 @@ import { CheckCheck, Copy, SendHorizonal } from "lucide-react";
 import { Separator } from "../ui/separator";
 import { useState } from "react";
 import { motion } from "framer-motion";
+import { DropdownStyles } from "../DropdownStyles";
 
 function PromptInput() {
   const [copyIcon, setCopyIcon] = useState(true);
+  const [style, setStyle] = useState("");
   // Vercel AI SDK (ai package) useChat()
   // useChat -> handles messages for us, user input, handling user submits, etc.
   const { input, handleInputChange, handleSubmit, isLoading, messages } =
@@ -50,6 +52,8 @@ function PromptInput() {
             Prompt
           </Button>
         )}
+
+        <DropdownStyles />
       </form>
 
       {messages.length !== 0 &&
@@ -81,7 +85,7 @@ function PromptInput() {
                     <p key={messages[messages.length - 1]?.id + index}>
                       &nbsp;
                     </p>
-                  ); // " "
+                  );
                 } else {
                   return (
                     <p
@@ -90,7 +94,7 @@ function PromptInput() {
                     >
                       {currentTextBlock}
                     </p>
-                  ); // "Cooper Codes is a YouTuber"
+                  );
                 }
               })}
           </div>
