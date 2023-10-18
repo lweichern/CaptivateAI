@@ -24,11 +24,10 @@ import { AppDispatch } from "@/app/redux/store";
 
 export function DropdownStyles() {
   const [open, setOpen] = React.useState(false);
-  const [value, setValue] = React.useState("");
+  const [styleVal, setStyleVal] = React.useState("");
 
   const dispatch = useDispatch<AppDispatch>();
-
-  dispatch(update(value));
+  dispatch(update(styleVal));
 
   return (
     <Popover open={open} onOpenChange={setOpen}>
@@ -39,8 +38,8 @@ export function DropdownStyles() {
           aria-expanded={open}
           className="w-[200px] justify-between"
         >
-          {value
-            ? styles.find((style) => style.value === value)?.label
+          {styleVal
+            ? styles.find((style) => style.value === styleVal)?.label
             : "Select style..."}
           <ChevronsUpDown className="ml-2 h-4 w-4 shrink-0 opacity-50" />
         </Button>
@@ -54,14 +53,14 @@ export function DropdownStyles() {
               <CommandItem
                 key={style.value}
                 onSelect={(currentValue) => {
-                  setValue(currentValue === value ? "" : currentValue);
+                  setStyleVal(currentValue === styleVal ? "" : currentValue);
                   setOpen(false);
                 }}
               >
                 <Check
                   className={cn(
                     "mr-2 h-4 w-4",
-                    value === style.value ? "opacity-100" : "opacity-0"
+                    styleVal === style.value ? "opacity-100" : "opacity-0"
                   )}
                 />
                 {style.label}
