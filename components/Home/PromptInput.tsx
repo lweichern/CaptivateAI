@@ -9,7 +9,9 @@ import { Separator } from "../ui/separator";
 import { useState } from "react";
 import { motion } from "framer-motion";
 import { DropdownStyles } from "../DropdownStyles";
+import { EmojiToggle } from "../EmojiToggle";
 import PromptSkeleton from "./PromptSkeleton";
+import { InputWordLimit } from "../InputWordLimit";
 
 function PromptInput() {
   const [copyIcon, setCopyIcon] = useState(true);
@@ -54,58 +56,56 @@ function PromptInput() {
           </Button>
         )}
 
-        <DropdownStyles />
+        <div className="flex space-x-3">
+          <DropdownStyles />
+          <EmojiToggle />
+          <InputWordLimit />
+        </div>
       </form>
 
-      {isLoading ? (
-        <PromptSkeleton />
-      ) : (
-        <>
-          {messages.length !== 0 &&
-            messages[messages.length - 1]?.role === "assistant" && (
-              <div
-                key={messages[messages.length - 1]?.id}
-                className="bg-[#1C1C1C] text-white p-2 mt-2 rounded shadow-sm shadow-primary max-h-[400px] overflow-y-scroll"
-              >
-                <div className="flex justify-between">
-                  <h3 className="text-lg font-semibold">CaptivateAI</h3>
-                  <div className="py-1 px-2 hover:bg-slate-600 transition-all rounded-sm">
-                    {copyIcon ? (
-                      <Copy
-                        className="w-4 cursor-pointer "
-                        onClick={copyToClipboard}
-                      />
-                    ) : (
-                      <CheckCheck className="w-4" />
-                    )}
-                  </div>
-                </div>
-                <Separator className="bg-white my-2" />
-                {/* Formatting the message */}
-                {messages[messages.length - 1]?.content
-                  .split("\n")
-                  .map((currentTextBlock: string, index: number) => {
-                    if (currentTextBlock === "") {
-                      return (
-                        <p key={messages[messages.length - 1]?.id + index}>
-                          &nbsp;
-                        </p>
-                      );
-                    } else {
-                      return (
-                        <p
-                          key={messages[messages.length - 1]?.id + index}
-                          className="text-left"
-                        >
-                          {currentTextBlock}
-                        </p>
-                      );
-                    }
-                  })}
+      {messages.length !== 0 &&
+        messages[messages.length - 1]?.role === "assistant" && (
+          <div
+            key={messages[messages.length - 1]?.id}
+            className="bg-[#1C1C1C] text-white p-2 mt-2 rounded shadow-sm shadow-primary max-h-[400px] overflow-y-scroll"
+          >
+            <div className="flex justify-between">
+              <h3 className="text-lg font-semibold">CaptivateAI</h3>
+              <div className="py-1 px-2 hover:bg-slate-600 transition-all rounded-sm">
+                {copyIcon ? (
+                  <Copy
+                    className="w-4 cursor-pointer "
+                    onClick={copyToClipboard}
+                  />
+                ) : (
+                  <CheckCheck className="w-4" />
+                )}
               </div>
-            )}
-        </>
-      )}
+            </div>
+            <Separator className="bg-white my-2" />
+            {/* Formatting the message */}
+            {messages[messages.length - 1]?.content
+              .split("\n")
+              .map((currentTextBlock: string, index: number) => {
+                if (currentTextBlock === "") {
+                  return (
+                    <p key={messages[messages.length - 1]?.id + index}>
+                      &nbsp;
+                    </p>
+                  );
+                } else {
+                  return (
+                    <p
+                      key={messages[messages.length - 1]?.id + index}
+                      className="text-left"
+                    >
+                      {currentTextBlock}
+                    </p>
+                  );
+                }
+              })}
+          </div>
+        )}
     </motion.div>
   );
 }

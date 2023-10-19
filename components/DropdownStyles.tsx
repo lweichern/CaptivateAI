@@ -40,7 +40,7 @@ export function DropdownStyles() {
         >
           {styleVal
             ? styles.find((style) => style.value === styleVal)?.label
-            : "Select style..."}
+            : "Styles"}
           <ChevronsUpDown className="ml-2 h-4 w-4 shrink-0 opacity-50" />
         </Button>
       </PopoverTrigger>
