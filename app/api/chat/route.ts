@@ -9,8 +9,9 @@ const config = new Configuration({
 const openai = new OpenAIApi(config);
 
 export async function POST(request: Request) {
-  const { messages } = await request.json(); // { messages: [] }
+  const { messages, style } = await request.json(); // { messages: [] }
   // messages [{ user and he says "hello there" }]
+  messages[0].content = contentConverter(messages[0]?.content, style);
 
   // GPT-4 system message
   // system message tells GPT-4 how to act
@@ -24,8 +25,7 @@ export async function POST(request: Request) {
       {
         role: "system",
         content:
-          //   "Act as an experienced digital marketing executive with 10 years of experience. Your task is to write up a copywriting with simple English that has trending SEO elements.",
-          "",
+          "Act as an experienced digital marketing executive with 10 years of experience. Your task is to write up a copywriting with simple English that has trending SEO elements.",
       },
       ...messages,
     ],
@@ -36,6 +36,14 @@ export async function POST(request: Request) {
 
   // send the stream as a response to our client / frontend
   return new StreamingTextResponse(stream);
+}
+
+function contentConverter(content: string, style: string) {
+  const preText =
+    "Create  a description that catches the attention of the reader using the contents below: \n";
+  const postText = `Please provide the answer in a ${style} tone and style and you have the freedom to modify the content of the copywriting to what you think is better. Remember to highlight the SEO elements`;
+
+  return `${preText} ${content} ${postText}`;
 }
 
 // import type { NextApiRequest, NextApiResponse } from "next";

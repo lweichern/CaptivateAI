@@ -32,8 +32,8 @@ function PriceCard({ subscriptionType, price, features }: PropType) {
       </CardHeader>
       <CardContent>
         <ul className="[&>li]:flex [&>li]:items-center [&>li]:gap-3 flex flex-col gap-3">
-          {features.map((feature) => (
-            <li>
+          {features.map((feature, index) => (
+            <li key={index}>
               <CheckCircle2 className={checkCircleClassname} />
               {feature}
             </li>

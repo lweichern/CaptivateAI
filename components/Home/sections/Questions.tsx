@@ -12,8 +12,8 @@ function Questions() {
         Why CaptivateAI?
       </h2> */}
       <div className="flex flex-col gap-14 md:gap-24  [&>*:nth-child(even)]:text-right [&>*:nth-child(even)]:-skew-y-3 [&>*:nth-child(odd)]:skew-y-3">
-        {questions.map((question) => (
-          <CardContainer question={question.question} />
+        {questions.map((question, index) => (
+          <CardContainer question={question.question} key={index} />
         ))}
       </div>
     </section>

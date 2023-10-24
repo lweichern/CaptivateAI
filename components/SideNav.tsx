@@ -34,6 +34,7 @@ function SideNav() {
                     animate="animate"
                     exit="exit"
                     className="text-3xl text-primary"
+                    key={index}
                   >
                     <a href={link.path}>{link.title}</a>
                   </motion.button>
