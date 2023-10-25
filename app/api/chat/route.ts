@@ -9,15 +9,15 @@ const config = new Configuration({
 const openai = new OpenAIApi(config);
 
 export async function POST(request: Request) {
-  const { messages, style } = await request.json(); // { messages: [] }
-  // messages [{ user and he says "hello there" }]
-  messages[0].content = contentConverter(messages[0]?.content, style);
+  const { messages, style, emoji, wordLimit } = await request.json();
 
-  // GPT-4 system message
-  // system message tells GPT-4 how to act
-  // it should always be at the front of your array
+  messages[0].content = contentConverter(
+    messages[0]?.content,
+    style,
+    emoji,
+    wordLimit
+  );
 
-  // createChatCompletion (get response from GPT-4)
   const response = await openai.createChatCompletion({
     model: "gpt-4",
     stream: true,
@@ -38,50 +38,22 @@ export async function POST(request: Request) {
   return new StreamingTextResponse(stream);
 }
 
-function contentConverter(content: string, style: string) {
+function contentConverter(
+  content: string,
+  style: string,
+  emoji: boolean,
+  wordLimit: string
+) {
   const preText =
     "Create  a description that catches the attention of the reader using the contents below: \n";
   const postText = `Please provide the answer in a ${style} tone and style and you have the freedom to modify the content of the copywriting to what you think is better. Remember to highlight the SEO elements`;
+  const hasEmojiText = emoji
+    ? "Feel free to add suitable emoji to make the description more eye-catching for the audience."
+    : "";
+  const wordLimitText =
+    parseInt(wordLimit) > 0
+      ? `Also, ensure that the description is not more than ${wordLimit} words excluding the SEO keywords. Besides, add the SEO keywords to the end of the description with bullet point format.`
+      : "";
 
-  return `${preText} ${content} ${postText}`;
+  return `${preText} ${content} ${postText} ${hasEmojiText} ${wordLimitText}`;
 }
-
-// import type { NextApiRequest, NextApiResponse } from "next";
-// import OpenAI from "openai";
-
-// export default async function POST(req: NextApiRequest, res: NextApiResponse) {
-//   console.log("hello");
-//   if (req.method !== "POST") {
-//     res.status(405).json({ message: "Method should be POST" });
-//   } else {
-//     try {
-//       const prompt = req.body.prompt;
-
-//       console.log("helloo", OpenAI);
-
-//       const openai = new OpenAI({
-//         apiKey: process.env.OPENAI_API_KEY,
-//       });
-//       const textResults = await openai.chat.completions.create({
-//         model: "gpt-3.5-turbo",
-//         messages: [{ role: "user", content: prompt }],
-//         // stream: true,
-//         // temperature: 0,
-//         // max_tokens: 2048,
-//       });
-
-//       // for await (const part of textResults) {
-//       //   console.log("output: ", part.choices[0].delta);
-//       // }
-
-//       console.log("textResults: ", textResults);
-
-//       const response = textResults.choices[0].message;
-
-//       res.status(200).json({ text: response });
-//     } catch (error) {
-//       console.log(error);
-//       res.status(500).json({ message: "Something went wrongggg" });
-//     }
-//   }
-// }

@@ -17,11 +17,13 @@ import { useAppSelector } from "@/app/redux/store";
 function PromptInput() {
   const [copyIcon, setCopyIcon] = useState(true);
   const style = useAppSelector((state) => state.styleReducer);
+  const emoji = useAppSelector((state) => state.emojiReducer);
+  const wordLimit = useAppSelector((state) => state.wordLimitReducer);
   // Vercel AI SDK (ai package) useChat()
   // useChat -> handles messages for us, user input, handling user submits, etc.
   const { input, handleInputChange, handleSubmit, isLoading, messages } =
     useChat({
-      body: { style },
+      body: { style, emoji, wordLimit },
     });
   // Copy function
   const copyToClipboard = () => {

@@ -36,7 +36,6 @@ import { useUser, useClerk } from "@clerk/nextjs";
 export function ProfileDropdownMenu() {
   const { user } = useUser();
   const { signOut } = useClerk();
-  console.log("user: ", user);
   return (
     <DropdownMenu>
       <DropdownMenuTrigger asChild>
