@@ -1,18 +1,12 @@
 import { Input } from "@/components/ui/input";
-import { Label } from "@/components/ui/label";
-import { ChangeEvent, useState } from "react";
-import { update } from "@/app/redux/slices/wordLimit-slice";
-import { useDispatch } from "react-redux";
-import { AppDispatch } from "@/app/redux/store";
+import { useWordLimitStore } from "@/lib/stateManagement";
+import { ChangeEvent } from "react";
 
 export function InputWordLimit() {
-  const [wordLimit, setWordLimit] = useState("");
-
-  const dispatch = useDispatch<AppDispatch>();
-  dispatch(update(wordLimit));
+  const changeWordLimit = useWordLimitStore((state) => state.changeWordLimit);
 
   const handleInput = (event: ChangeEvent<HTMLInputElement>) => {
-    setWordLimit(event.target.value);
+    changeWordLimit(event.target.value);
   };
 
   return (

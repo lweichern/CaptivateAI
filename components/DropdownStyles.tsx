@@ -2,8 +2,6 @@
 
 import * as React from "react";
 import { Check, ChevronsUpDown } from "lucide-react";
-import { clear, update } from "@/app/redux/slices/style-slice";
-import { useDispatch } from "react-redux";
 
 import { cn } from "@/lib/utils";
 import { Button } from "@/components/ui/button";
@@ -20,14 +18,14 @@ import {
   PopoverTrigger,
 } from "@/components/ui/popover";
 import { styles } from "@/lib/data";
-import { AppDispatch } from "@/app/redux/store";
+import { useStyleStore } from "@/lib/stateManagement";
 
 export function DropdownStyles() {
   const [open, setOpen] = React.useState(false);
   const [styleVal, setStyleVal] = React.useState("");
+  const changeStyle = useStyleStore((state) => state.changeStyle);
 
-  const dispatch = useDispatch<AppDispatch>();
-  dispatch(update(styleVal));
+  changeStyle(styleVal);
 
   return (
     <Popover open={open} onOpenChange={setOpen}>
@@ -53,7 +51,7 @@ export function DropdownStyles() {
               <CommandItem
                 key={style.value}
                 onSelect={(currentValue) => {
-                  setStyleVal(currentValue === styleVal ? "" : currentValue);
+                  setStyleVal(currentValue);
                   setOpen(false);
                 }}
               >

@@ -2,23 +2,27 @@
 
 import { Button } from "@/components/ui/button";
 import { Textarea } from "@/components/ui/textarea";
-import { useChat, Message } from "ai/react";
+import { useChat } from "ai/react";
 import LoadingButton from "../LoadingButton";
-import { CheckCheck, Copy, SendHorizonal } from "lucide-react";
+import { CheckCheck, Copy } from "lucide-react";
 import { Separator } from "../ui/separator";
 import { useState } from "react";
 import { motion } from "framer-motion";
 import { DropdownStyles } from "../DropdownStyles";
 import { EmojiToggle } from "../EmojiToggle";
-import PromptSkeleton from "./PromptSkeleton";
 import { InputWordLimit } from "../InputWordLimit";
-import { useAppSelector } from "@/app/redux/store";
+import {
+  useEmojiStore,
+  useStyleStore,
+  useWordLimitStore,
+} from "@/lib/stateManagement";
 
 function PromptInput() {
   const [copyIcon, setCopyIcon] = useState(true);
-  const style = useAppSelector((state) => state.styleReducer);
-  const emoji = useAppSelector((state) => state.emojiReducer);
-  const wordLimit = useAppSelector((state) => state.wordLimitReducer);
+  const style = useStyleStore((state) => state.style);
+  const emoji = useEmojiStore((state) => state.emoji);
+  const wordLimit = useWordLimitStore((state) => state.wordLimit);
+
   // Vercel AI SDK (ai package) useChat()
   // useChat -> handles messages for us, user input, handling user submits, etc.
   const { input, handleInputChange, handleSubmit, isLoading, messages } =

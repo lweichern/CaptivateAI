@@ -1,26 +1,25 @@
 import { Label } from "@/components/ui/label";
 import { Switch } from "@/components/ui/switch";
-import { update } from "@/app/redux/slices/emoji-slice";
-import { useDispatch } from "react-redux";
-import { AppDispatch } from "@/app/redux/store";
+import { useEmojiStore } from "@/lib/stateManagement";
 import { useState } from "react";
 
 export function EmojiToggle() {
-  const [isChecked, setIsChecked] = useState<boolean>(false);
+  const [isChecked] = useState<boolean>(false);
+  const emoji = useEmojiStore((state) => state.emoji);
+  const changeEmoji = useEmojiStore((state) => state.changeEmoji);
 
-  const dispatch = useDispatch<AppDispatch>();
-  dispatch(update(isChecked));
-
-  function handleChecked(checkedVal: boolean) {
-    setIsChecked(checkedVal);
+  function handleChecked() {
+    console.log("test");
+    console.log("emojiL: ", emoji);
+    changeEmoji();
   }
 
   return (
     <div className="flex items-center space-x-2">
       <Switch
         id="emoji"
-        checked={isChecked}
-        onCheckedChange={() => handleChecked(isChecked ? false : true)}
+        checked={emoji}
+        onCheckedChange={() => handleChecked()}
       />
       <Label htmlFor="emoji">Emoji</Label>
     </div>

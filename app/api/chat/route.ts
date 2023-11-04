@@ -18,6 +18,9 @@ export async function POST(request: Request) {
     wordLimit
   );
 
+  console.log("emojiiii: ", emoji);
+  console.log("messages[0].content: ", messages[0].content);
+
   const response = await openai.createChatCompletion({
     model: "gpt-4",
     stream: true,
@@ -46,7 +49,9 @@ function contentConverter(
 ) {
   const preText =
     "Create  a description that catches the attention of the reader using the contents below: \n";
-  const postText = `Please provide the answer in a ${style} tone and style and you have the freedom to modify the content of the copywriting to what you think is better. Remember to highlight the SEO elements`;
+  const postText =
+    style &&
+    `\n\nPlease provide the answer in a ${style} tone and style and you have the freedom to modify the content of the copywriting to what you think is better. Remember to highlight the SEO elements`;
   const hasEmojiText = emoji
     ? "Feel free to add suitable emoji to make the description more eye-catching for the audience."
     : "";
