@@ -18,9 +18,6 @@ export async function POST(request: Request) {
     wordLimit
   );
 
-  console.log("emojiiii: ", emoji);
-  console.log("messages[0].content: ", messages[0].content);
-
   const response = await openai.createChatCompletion({
     model: "gpt-4",
     stream: true,
@@ -57,8 +54,8 @@ function contentConverter(
     : "";
   const wordLimitText =
     parseInt(wordLimit) > 0
-      ? `Also, ensure that the description is not more than ${wordLimit} words excluding the SEO keywords. Besides, add the SEO keywords to the end of the description with bullet point format.`
+      ? `Also, ensure that the description is not more than ${wordLimit} words excluding the SEO keywords.`
       : "";
 
-  return `${preText} ${content} ${postText} ${hasEmojiText} ${wordLimitText}`;
+  return `${preText} ${content} ${postText} ${hasEmojiText} ${wordLimitText} Besides, add the related SEO keywords to the end of the description with bullet point format.`;
 }

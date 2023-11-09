@@ -7,10 +7,10 @@ import { Link as ScrollLink } from "react-scroll";
 
 function Hero() {
   return (
-    <section className="h-screen flex justify-center items-center ">
-      <div className="flex flex-col md:flex-row gap-16">
+    <section className="h-screen flex justify-center items-center">
+      <div className="flex flex-col md:flex-row">
         <div className=" text-center lg:text-left flex flex-col justify-center gap-3 w-1/2">
-          <h2 className="mb-6 text-3xl md:text-4xl lg:text-5xl">
+          <h2 className="mb-6 text-3xl md:text-4xl lg:text-5xl font-semibold">
             Activate your{" "}
             <span className=" underline decoration-primary">
               social presence
@@ -20,22 +20,16 @@ function Hero() {
             <span className="text-primary font-semibold"> Captivate AI</span>
           </h2>
           <span className="text-lg md:text-2xl lg:text-3xl">
-            Use AI to generate captions or descriptions for your products.
+            Use AI to generate captions and descriptions for your products.
           </span>
-          <Button className=" max-w-[100px] mx-auto lg:mx-0">
+          <Button className=" max-w-[100px] mx-auto lg:mx-0 mt-3">
             <ScrollLink to="promptSection" smooth={true}>
               Try It Out
             </ScrollLink>
           </Button>
         </div>
-        <div className="flex-col hidden lg:flex w-1/2">
-          <Image
-            src="/twitter.jpg"
-            alt=""
-            width="50"
-            height="50"
-            style={{ width: "100%" }}
-          />
+        <div className="flex-col hidden lg:flex w-1/2 items-end">
+          <Image src="/twitter.jpg" alt="" width={500} height={200} />
         </div>
       </div>
     </section>

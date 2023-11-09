@@ -6,7 +6,7 @@ import { useChat } from "ai/react";
 import LoadingButton from "../LoadingButton";
 import { CheckCheck, Copy } from "lucide-react";
 import { Separator } from "../ui/separator";
-import { useState } from "react";
+import { FormEvent, useState } from "react";
 import { motion } from "framer-motion";
 import { DropdownStyles } from "../DropdownStyles";
 import { EmojiToggle } from "../EmojiToggle";
@@ -38,9 +38,16 @@ function PromptInput() {
     }, 1000);
   };
 
+  // fire handleSubmit when Enter Key is pressed
+  const handleKeyPress = (e: React.KeyboardEvent<HTMLTextAreaElement>) => {
+    if (e.key === "Enter") {
+      handleSubmit(e);
+    }
+  };
+
   return (
     <motion.div
-      className=" mx-auto w-full max-w-3xl px-8 md:px-14 lg:px-24"
+      className=" mx-auto w-full px-8 md:px-14 lg:px-24 my-5 overflow-hidden"
       initial={{ opacity: 0, y: 100 }}
       whileInView={{ opacity: 1, y: 0 }}
       viewport={{ once: true }}
@@ -51,11 +58,12 @@ function PromptInput() {
         <span className="text-primary font-semibold">CaptivateAI</span>!
       </h2>
       <br />
-      <form onSubmit={handleSubmit} className="grid  gap-2 ">
+      <form onSubmit={handleSubmit} className="grid gap-2 lg:max-w-3xl mx-auto">
         <Textarea
           placeholder="Describe your post..."
           onChange={handleInputChange}
           value={input}
+          onKeyDown={handleKeyPress}
         />
         {isLoading ? (
           <LoadingButton />
@@ -76,10 +84,10 @@ function PromptInput() {
         messages[messages.length - 1]?.role === "assistant" && (
           <div
             key={messages[messages.length - 1]?.id}
-            className="bg-[#1C1C1C] text-white p-2 mt-2 rounded shadow-sm shadow-primary max-h-[400px] overflow-y-scroll"
+            className="bg-[#393939] text-white px-2 py-4 mt-2 rounded shadow-md shadow-primary"
           >
             <div className="flex justify-between">
-              <h3 className="text-lg font-semibold">CaptivateAI</h3>
+              <h3 className="text-2xl font-semibold">CaptivateAI</h3>
               <div className="py-1 px-2 hover:bg-slate-600 transition-all rounded-sm">
                 {copyIcon ? (
                   <Copy
@@ -98,18 +106,24 @@ function PromptInput() {
               .map((currentTextBlock: string, index: number) => {
                 if (currentTextBlock === "") {
                   return (
-                    <p key={messages[messages.length - 1]?.id + index}>
+                    <motion.p
+                      key={messages[messages.length - 1]?.id + index}
+                      initial={{ opacity: 0, y: 100 }}
+                      animate={{ opacity: 1, y: 0 }}
+                    >
                       &nbsp;
-                    </p>
+                    </motion.p>
                   );
                 } else {
                   return (
-                    <p
+                    <motion.p
                       key={messages[messages.length - 1]?.id + index}
                       className="text-left"
+                      initial={{ opacity: 0, y: 100 }}
+                      animate={{ opacity: 1, y: 0 }}
                     >
                       {currentTextBlock}
-                    </p>
+                    </motion.p>
                   );
                 }
               })}

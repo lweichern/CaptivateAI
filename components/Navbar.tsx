@@ -11,9 +11,7 @@ import {
   useScroll,
   useMotionValueEvent,
 } from "framer-motion";
-import { SignOutButton, useUser } from "@clerk/nextjs";
-import { useClerk } from "@clerk/nextjs";
-import Image from "next/image";
+import { useUser } from "@clerk/nextjs";
 import { ProfileDropdownMenu } from "./ProfileIcon";
 
 function Navbar() {
@@ -41,7 +39,9 @@ function Navbar() {
         hidden ? "shadow-none" : "shadow-md"
       } shadow-primary flex items-center justify-between py-4 px-8 lg:px-20 w-[97%] z-10  rounded-full bg-clip-padding backdrop-filter backdrop-blur-2xl bg-opacity-30 mt-6 -translate-x-1/2 left-1/2`}
     >
-      <div className="text-2xl text-white font-extrabold">CaptivateAI.</div>
+      <a href="/">
+        <div className="text-2xl text-white font-extrabold">CaptivateAI.</div>
+      </a>
       <div className="flex gap-1 items-center">
         <div className="md:hidden flex items-center">
           <AnimatePresence mode="wait">
@@ -53,7 +53,7 @@ function Navbar() {
             <Button
               variant="link"
               key={link.title}
-              className="text-lg hidden md:block text-white"
+              className="text-lg hidden md:block text-white hover:bg-slate-400 hover:no-underline"
             >
               <a href={link.path}>{link.title}</a>
             </Button>
@@ -67,7 +67,7 @@ function Navbar() {
           </Button>
         )}
 
-        <ToggleThemeButton />
+        {/* <ToggleThemeButton /> */}
       </div>
     </motion.nav>
   );
