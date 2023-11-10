@@ -8,9 +8,9 @@ import { CheckCheck, Copy } from "lucide-react";
 import { Separator } from "../ui/separator";
 import { FormEvent, useState } from "react";
 import { motion } from "framer-motion";
-import { DropdownStyles } from "../DropdownStyles";
-import { EmojiToggle } from "../EmojiToggle";
-import { InputWordLimit } from "../InputWordLimit";
+import { DropdownStyles } from "../Prompt/DropdownStyles";
+import { EmojiToggle } from "../Prompt/EmojiToggle";
+import { InputWordLimit } from "../Prompt/InputWordLimit";
 import {
   useEmojiStore,
   useStyleStore,
@@ -86,14 +86,16 @@ function PromptInput() {
             key={messages[messages.length - 1]?.id}
             className="bg-[#393939] text-white px-2 py-4 mt-2 rounded shadow-md shadow-primary"
           >
-            <div className="flex justify-between">
-              <h3 className="text-2xl font-semibold">CaptivateAI</h3>
-              <div className="py-1 px-2 hover:bg-slate-600 transition-all rounded-sm">
+            <div className="flex justify-between gap-3">
+              <h3 className="text-lg font-semibold">
+                {messages[messages.length - 2]?.content}
+              </h3>
+              <div
+                className="py-1 px-2 hover:bg-slate-600 transition-all rounded-sm h-fit cursor-pointer"
+                onClick={copyToClipboard}
+              >
                 {copyIcon ? (
-                  <Copy
-                    className="w-4 cursor-pointer "
-                    onClick={copyToClipboard}
-                  />
+                  <Copy className="w-4 cursor-pointer " />
                 ) : (
                   <CheckCheck className="w-4" />
                 )}

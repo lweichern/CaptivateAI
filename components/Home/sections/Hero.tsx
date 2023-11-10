@@ -2,6 +2,7 @@
 
 import { Button } from "@/components/ui/button";
 import Image from "next/image";
+import Link from "next/link";
 import React from "react";
 import { Link as ScrollLink } from "react-scroll";
 
@@ -22,10 +23,8 @@ function Hero() {
           <span className="text-lg md:text-2xl lg:text-3xl">
             Use AI to generate captions and descriptions for your products.
           </span>
-          <Button className=" max-w-[100px] mx-auto lg:mx-0 mt-3">
-            <ScrollLink to="promptSection" smooth={true}>
-              Try It Out
-            </ScrollLink>
+          <Button className=" w-fit mx-auto lg:mx-0 mt-3 text-md font-semibold">
+            <Link href={"/prompt"}>Try For Free</Link>
           </Button>
         </div>
         <div className="flex-col hidden lg:flex w-1/2 items-end">
