@@ -19,6 +19,7 @@ import {
 } from "@/components/ui/popover";
 import { styles } from "@/lib/data";
 import { useStyleStore } from "@/lib/stateManagement";
+import { Label } from "../ui/label";
 
 export function DropdownStyles() {
   const [open, setOpen] = React.useState(false);
@@ -29,6 +30,7 @@ export function DropdownStyles() {
 
   return (
     <Popover open={open} onOpenChange={setOpen}>
+      <Label className="hidden lg:block">Choose Style</Label>
       <PopoverTrigger asChild>
         <Button
           variant="outline"

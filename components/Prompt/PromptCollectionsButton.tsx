@@ -15,18 +15,12 @@ import {
   TooltipProvider,
   TooltipTrigger,
 } from "@/components/ui/tooltip";
-import { Input } from "@/components/ui/input";
-import { Label } from "@/components/ui/label";
 import { Library } from "lucide-react";
 import { PromptTable } from "./PromptTable";
-import { Separator } from "../ui/separator";
-import SectionDivider from "../SectionDivider";
-import { useState } from "react";
 
 export function PromptCollectionButton() {
-  const [open, setOpen] = useState(false);
   return (
-    <Dialog open={open}>
+    <Dialog>
       <TooltipProvider>
         <Tooltip>
           <TooltipTrigger
@@ -34,7 +28,7 @@ export function PromptCollectionButton() {
             className=" fixed bottom-12 left-12 border-2 border-accent rounded-full"
           >
             <DialogTrigger asChild>
-              <Button onClick={() => setOpen(true)}>
+              <Button>
                 <Library />
               </Button>
             </DialogTrigger>
@@ -53,9 +47,6 @@ export function PromptCollectionButton() {
           <DialogDescription>A list of your recent Prompts</DialogDescription>
         </DialogHeader>
         <PromptTable />
-        <DialogFooter>
-          <Button onClick={() => setOpen(false)}>Cancel</Button>
-        </DialogFooter>
       </DialogContent>
     </Dialog>
   );

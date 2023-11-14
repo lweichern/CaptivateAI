@@ -9,19 +9,18 @@ export function EmojiToggle() {
   const changeEmoji = useEmojiStore((state) => state.changeEmoji);
 
   function handleChecked() {
-    console.log("test");
-    console.log("emojiL: ", emoji);
     changeEmoji();
   }
 
   return (
-    <div className="flex items-center space-x-2">
+    <div className="flex items-center gap-4 lg:gap-0 lg:flex-col lg:items-start">
+      <Label htmlFor="emoji">Emoji</Label>
       <Switch
         id="emoji"
         checked={emoji}
         onCheckedChange={() => handleChecked()}
+        className="lg:mt-4"
       />
-      <Label htmlFor="emoji">Emoji</Label>
     </div>
   );
 }

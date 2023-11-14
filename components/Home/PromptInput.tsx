@@ -16,6 +16,7 @@ import {
   useStyleStore,
   useWordLimitStore,
 } from "@/lib/stateManagement";
+import Map from "../Prompt/Map";
 
 function PromptInput() {
   const [copyIcon, setCopyIcon] = useState(true);
@@ -47,44 +48,50 @@ function PromptInput() {
 
   return (
     <motion.div
-      className=" mx-auto w-full px-8 md:px-14 lg:px-24 my-5 overflow-hidden"
+      className=" mx-auto w-full px-8 md:px-14 lg:px-24 my-5 overflow-hidden lg:flex lg:mt-32 gap-4"
       initial={{ opacity: 0, y: 100 }}
       whileInView={{ opacity: 1, y: 0 }}
       viewport={{ once: true }}
       transition={{ delay: 0.1, duration: 0.7 }}
     >
-      <h2 className="text-2xl mt-32 text-center">
-        Prompt it with{" "}
-        <span className="text-primary font-semibold">CaptivateAI</span>!
-      </h2>
-      <br />
-      <form onSubmit={handleSubmit} className="grid gap-2 lg:max-w-3xl mx-auto">
-        <Textarea
-          placeholder="Describe your post..."
-          onChange={handleInputChange}
-          value={input}
-          onKeyDown={handleKeyPress}
-        />
-        {isLoading ? (
-          <LoadingButton />
-        ) : (
-          <Button className=" bg-primary p-4 mt-2 hover:brightness-95 rounded-lg text-white">
-            Prompt
-          </Button>
-        )}
-
-        <div className="flex space-x-3">
-          <DropdownStyles />
-          <EmojiToggle />
-          <InputWordLimit />
-        </div>
-      </form>
-
+      <div className="lg:w-[40%]">
+        <h2 className="text-2xl text-center">
+          Prompt it with{" "}
+          <span className="text-primary font-semibold">CaptivateAI</span>!
+        </h2>
+        <br />
+        <form
+          onSubmit={handleSubmit}
+          className="grid gap-2 lg:max-w-3xl mx-auto"
+        >
+          <Textarea
+            placeholder="Describe your post..."
+            onChange={handleInputChange}
+            value={input}
+            onKeyDown={handleKeyPress}
+            rows={10}
+          />
+          <div className="flex gap-4 lg:flex-col">
+            <DropdownStyles />
+            <EmojiToggle />
+            <InputWordLimit />
+            <Map />
+          </div>
+          {isLoading ? (
+            <LoadingButton />
+          ) : (
+            <Button className=" bg-primary p-4 mt-2 hover:brightness-95 rounded-lg text-white">
+              Prompt
+            </Button>
+          )}
+        </form>
+      </div>
+      <Separator className="hidden lg:block" orientation="vertical" />
       {messages.length !== 0 &&
         messages[messages.length - 1]?.role === "assistant" && (
           <div
             key={messages[messages.length - 1]?.id}
-            className="bg-[#393939] text-white px-2 py-4 mt-2 rounded shadow-md shadow-primary"
+            className="bg-[#393939] text-white px-2 py-4 mt-2 rounded shadow-md shadow-primary lg:w-[60%]"
           >
             <div className="flex justify-between gap-3">
               <h3 className="text-lg font-semibold">
