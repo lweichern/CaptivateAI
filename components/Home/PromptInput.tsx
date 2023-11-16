@@ -17,8 +17,11 @@ import {
   useWordLimitStore,
 } from "@/lib/stateManagement";
 import Map from "../Prompt/Map";
+import { ToastAction } from "@/components/ui/toast";
+import { useToast } from "@/components/ui/use-toast";
 
 function PromptInput() {
+  const { toast } = useToast();
   const [copyIcon, setCopyIcon] = useState(true);
   const style = useStyleStore((state) => state.style);
   const emoji = useEmojiStore((state) => state.emoji);
