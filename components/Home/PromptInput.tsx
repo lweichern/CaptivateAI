@@ -4,7 +4,7 @@ import { Button } from "@/components/ui/button";
 import { Textarea } from "@/components/ui/textarea";
 import { useChat } from "ai/react";
 import LoadingButton from "../LoadingButton";
-import { CheckCheck, Copy } from "lucide-react";
+import { ArrowLeftFromLine, CheckCheck, Copy } from "lucide-react";
 import { Separator } from "../ui/separator";
 import { FormEvent, useState } from "react";
 import { motion } from "framer-motion";
@@ -87,7 +87,15 @@ function PromptInput() {
         </form>
       </div>
       <Separator className="hidden lg:block" orientation="vertical" />
-      {messages.length !== 0 &&
+      {messages.length == 0 ? (
+        <>
+          <p className="w-full flex flex-col items-center justify-center">
+            <ArrowLeftFromLine />
+            Start Prompting...
+          </p>
+        </>
+      ) : (
+        messages.length !== 0 &&
         messages[messages.length - 1]?.role === "assistant" && (
           <div
             key={messages[messages.length - 1]?.id}
@@ -137,7 +145,9 @@ function PromptInput() {
                 }
               })}
           </div>
-        )}
+        )
+      )}
+      {}
     </motion.div>
   );
 }
