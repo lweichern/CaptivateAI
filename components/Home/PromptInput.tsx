@@ -4,7 +4,7 @@ import { Button } from "@/components/ui/button";
 import { Textarea } from "@/components/ui/textarea";
 import { useChat } from "ai/react";
 import LoadingButton from "../LoadingButton";
-import { ArrowLeftFromLine, CheckCheck, Copy } from "lucide-react";
+import { ArrowLeftFromLine, CheckCheck, Copy, Star } from "lucide-react";
 import { Separator } from "../ui/separator";
 import { FormEvent, useState } from "react";
 import { motion } from "framer-motion";
@@ -51,7 +51,7 @@ function PromptInput() {
 
   return (
     <motion.div
-      className=" mx-auto w-full px-8 md:px-14 lg:px-24 my-5 overflow-hidden lg:flex lg:mt-32 gap-4"
+      className=" mx-auto w-full px-8 md:px-14 lg:px-24 my-5 overflow-hidden lg:flex  gap-4 mt-32"
       initial={{ opacity: 0, y: 100 }}
       whileInView={{ opacity: 1, y: 0 }}
       viewport={{ once: true }}
@@ -92,8 +92,8 @@ function PromptInput() {
       <Separator className="hidden lg:block" orientation="vertical" />
       {messages.length == 0 ? (
         <>
-          <p className="w-full flex flex-col items-center justify-center">
-            <ArrowLeftFromLine />
+          <p className="w-full flex-col items-center justify-center hidden lg:flex">
+            <ArrowLeftFromLine className=" animate-bounceLeft" />
             Start Prompting...
           </p>
         </>
@@ -109,14 +109,16 @@ function PromptInput() {
                 {messages[messages.length - 2]?.content}
               </h3>
               <div
-                className="py-1 px-2 hover:bg-slate-600 transition-all rounded-sm h-fit cursor-pointer"
+                className="py-1 px-2  h-fit cursor-pointer flex gap-2"
                 onClick={copyToClipboard}
               >
                 {copyIcon ? (
-                  <Copy className="w-4 cursor-pointer " />
+                  <Copy className="w-5 cursor-pointer hover:bg-slate-600 transition-all rounded-sm " />
                 ) : (
                   <CheckCheck className="w-4" />
                 )}
+
+                <Star className="w-5 cursor-pointer hover:bg-slate-600 transition-all rounded-sm " />
               </div>
             </div>
             <Separator className="bg-white my-2" />
@@ -150,7 +152,6 @@ function PromptInput() {
           </div>
         )
       )}
-      {}
     </motion.div>
   );
 }

@@ -37,10 +37,10 @@ function Navbar() {
       transition={{ duration: 0.3, ease: "easeInOut" }}
       className={`glass fixed ${
         hidden ? "shadow-none" : "shadow-md"
-      } shadow-primary flex items-center justify-between py-4 px-8 lg:px-20 w-[97%] z-10  rounded-full bg-clip-padding backdrop-filter backdrop-blur-2xl bg-opacity-30 mt-6 -translate-x-1/2 left-1/2`}
+      } shadow-primary flex items-center justify-between py-2 px-8 lg:px-20 w-[97%] z-10  rounded-full bg-clip-padding backdrop-filter backdrop-blur-2xl bg-opacity-30 mt-6 -translate-x-1/2 left-1/2`}
     >
       <a href="/">
-        <div className="text-2xl text-white font-extrabold">CaptivateAI.</div>
+        <div className="text-lg text-white font-extrabold">CaptivateAI.</div>
       </a>
       <div className="flex gap-1 items-center">
         <div className="md:hidden flex items-center">
@@ -53,7 +53,7 @@ function Navbar() {
             <Button
               variant="link"
               key={link.title}
-              className="text-lg hidden md:block text-white hover:bg-slate-400 hover:no-underline"
+              className="text-md hidden md:block text-white hover:bg-slate-400 hover:no-underline"
             >
               <a href={link.path}>{link.title}</a>
             </Button>
