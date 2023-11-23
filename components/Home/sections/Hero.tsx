@@ -9,8 +9,8 @@ import { Link as ScrollLink } from "react-scroll";
 function Hero() {
   return (
     <section className="h-screen flex justify-center items-center">
-      <div className="flex flex-col md:flex-row">
-        <div className=" text-center lg:text-left flex flex-col justify-center gap-3 w-1/2">
+      <div className="flex flex-col md:flex-row px-8 lg:px-20">
+        <div className=" text-center lg:text-left flex flex-col justify-center gap-3 lg:w-1/2">
           <h2 className="mb-6 text-3xl md:text-4xl lg:text-5xl font-semibold">
             Activate your{" "}
             <span className=" underline decoration-primary">
@@ -27,7 +27,7 @@ function Hero() {
             <Link href={"/prompt"}>Try For Free</Link>
           </Button>
         </div>
-        <div className="flex-col hidden lg:flex w-1/2 items-end">
+        <div className="flex-col hidden lg:flex lg:w-1/2 items-end">
           <Image src="/twitter.jpg" alt="" width={500} height={200} />
         </div>
       </div>
