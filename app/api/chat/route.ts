@@ -18,6 +18,8 @@ export async function POST(request: Request) {
     wordLimit
   );
 
+  console.log("Prompt: ", messages[0].content)
+
   const response = await openai.createChatCompletion({
     model: "gpt-4",
     stream: true,
@@ -45,17 +47,14 @@ function contentConverter(
   wordLimit: string
 ) {
   const preText =
-    "Create  a description that catches the attention of the reader using the contents below: \n";
+    "Act as an experienced digital marketing executive with 10 years of experience. Your task is to write up a copywriting with simple English that has trending SEO elements. \nCreate  a description that catches the attention of the reader using the contents below: \n";
   const postText =
     style &&
     `\n\nPlease provide the answer in a ${style} tone and style and you have the freedom to modify the content of the copywriting to what you think is better. Remember to highlight the SEO elements`;
   const hasEmojiText = emoji
     ? "Feel free to add suitable emoji to make the description more eye-catching for the audience."
     : "";
-  const wordLimitText =
-    parseInt(wordLimit) > 0
-      ? `Also, ensure that the description is not more than ${wordLimit} words excluding the SEO keywords.`
-      : "";
+  const wordLimitText = `Also, ensure that the description is ${parseInt(wordLimit) > 0 ? `not more than wordLimit` : "around 500"} words excluding the SEO keywords.`
 
   return `${preText} ${content} ${postText} ${hasEmojiText} ${wordLimitText} Besides, add the related SEO keywords to the end of the description with bullet point format.`;
 }

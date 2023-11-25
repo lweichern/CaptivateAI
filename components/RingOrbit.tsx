@@ -35,6 +35,7 @@ function RingOrbit() {
           whileInView={{ opacity: 1 }}
           transition={{ duration: 0.5, type: "tween", delay: 0.2 }}
           viewport={{ once: true }}
+          key={index}
         >
           {elem.question}
         </motion.div>

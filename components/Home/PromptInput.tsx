@@ -4,9 +4,9 @@ import { Button } from "@/components/ui/button";
 import { Textarea } from "@/components/ui/textarea";
 import { useChat } from "ai/react";
 import LoadingButton from "../LoadingButton";
-import { ArrowLeftFromLine, CheckCheck, Copy, Star } from "lucide-react";
+import { ArrowLeftFromLine } from "lucide-react";
 import { Separator } from "../ui/separator";
-import { FormEvent, useState } from "react";
+import { useState } from "react";
 import { motion } from "framer-motion";
 import { DropdownStyles } from "../Prompt/DropdownStyles";
 import { EmojiToggle } from "../Prompt/EmojiToggle";
@@ -17,8 +17,9 @@ import {
   useWordLimitStore,
 } from "@/lib/stateManagement";
 import Map from "../Prompt/Map";
-import { ToastAction } from "@/components/ui/toast";
-import { useToast } from "@/components/ui/use-toast";
+import { CopyIcon, SaveIcon } from "../Prompt/Icons";
+import supabase from "@/utils/supabase";
+import { useToast } from "../ui/use-toast";
 
 function PromptInput() {
   const { toast } = useToast();
@@ -47,6 +48,28 @@ function PromptInput() {
     if (e.key === "Enter") {
       handleSubmit(e);
     }
+  };
+
+  const savePromptHandler = async () => {
+    const promptQuestionPayload = messages[messages.length - 2]?.content;
+    const promptAnswerPayload = messages[messages.length - 1]?.content;
+
+    const { data } = await supabase
+      .from("Prompts")
+      .insert({
+        created_by: "jake",
+        prompt_question: promptQuestionPayload,
+        prompt: promptAnswerPayload,
+        emoji: emoji,
+        style: style,
+      })
+      .select();
+
+    const promptQuestion = data![0].prompt_question;
+    toast({
+      title: `Prompt title: ${promptQuestion}`,
+      description: "The above prompt has been saved to collection ✅",
+    });
   };
 
   return (
@@ -108,17 +131,11 @@ function PromptInput() {
               <h3 className="text-lg font-semibold">
                 {messages[messages.length - 2]?.content}
               </h3>
-              <div
-                className="py-1 px-2  h-fit cursor-pointer flex gap-2"
-                onClick={copyToClipboard}
-              >
-                {copyIcon ? (
-                  <Copy className="w-5 cursor-pointer hover:bg-slate-600 transition-all rounded-sm " />
-                ) : (
-                  <CheckCheck className="w-4" />
-                )}
-
-                <Star className="w-5 cursor-pointer hover:bg-slate-600 transition-all rounded-sm " />
+              <div className="py-1 px-2  h-fit cursor-pointer flex gap-2">
+                <div onClick={copyToClipboard}>
+                  <CopyIcon copyIcon={copyIcon} />
+                </div>
+                <SaveIcon savePromptHandler={savePromptHandler} />
               </div>
             </div>
             <Separator className="bg-white my-2" />

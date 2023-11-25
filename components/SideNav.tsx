@@ -8,9 +8,8 @@ import {
 } from "@/components/ui/sheet";
 import Hamburger from "./Hamburger";
 import { navlinks } from "@/public/navlink";
-import { Button } from "./ui/button";
 import { Separator } from "./ui/separator";
-import { AnimatePresence, motion } from "framer-motion";
+import { motion } from "framer-motion";
 import { menuSlide } from "@/lib/animation";
 
 function SideNav() {
@@ -26,7 +25,7 @@ function SideNav() {
           <SheetDescription>
             <div className=" flex flex-col gap-3 mt-4">
               {navlinks.map((link, index) => (
-                <>
+                <div key={index}>
                   <motion.button
                     variants={menuSlide}
                     custom={index}
@@ -34,11 +33,10 @@ function SideNav() {
                     animate="animate"
                     exit="exit"
                     className="text-3xl text-primary"
-                    key={index}
                   >
                     <a href={link.path}>{link.title}</a>
                   </motion.button>
-                </>
+                </div>
               ))}
             </div>
           </SheetDescription>

@@ -2,15 +2,9 @@
 
 import React, { useState } from "react";
 import { Button } from "./ui/button";
-import { ToggleThemeButton } from "./ToggleThemeButton";
 import { navlinks } from "@/public/navlink";
 import SideNav from "./SideNav";
-import {
-  AnimatePresence,
-  motion,
-  useScroll,
-  useMotionValueEvent,
-} from "framer-motion";
+import { motion, useScroll, useMotionValueEvent } from "framer-motion";
 import { useUser } from "@clerk/nextjs";
 import { ProfileDropdownMenu } from "./ProfileIcon";
 
@@ -44,9 +38,7 @@ function Navbar() {
       </a>
       <div className="flex gap-1 items-center">
         <div className="md:hidden flex items-center">
-          <AnimatePresence mode="wait">
-            <SideNav />
-          </AnimatePresence>
+          <SideNav />
         </div>
         <div className="flex items-center">
           {navlinks.map((link) => (
