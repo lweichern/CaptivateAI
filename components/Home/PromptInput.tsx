@@ -46,7 +46,11 @@ function PromptInput() {
   // fire handleSubmit when Enter Key is pressed
   const handleKeyPress = (e: React.KeyboardEvent<HTMLTextAreaElement>) => {
     if (e.key === "Enter") {
-      handleSubmit(e);
+      e.preventDefault();
+      const form = e.currentTarget.form;
+      if (form) {
+        form.requestSubmit();
+      }
     }
   };
 
