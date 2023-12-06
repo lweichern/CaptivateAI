@@ -20,7 +20,6 @@ export function ProfileDropdownMenu() {
       <DropdownMenuTrigger asChild>
         <Button variant="outline">
           <Image
-            loader={() => user?.imageUrl}
             src={`${user?.imageUrl}`}
             alt=""
             width={30}
@@ -32,7 +31,6 @@ export function ProfileDropdownMenu() {
       <DropdownMenuContent className="w-56 flex flex-col gap-4 py-4">
         <DropdownMenuItem className="flex gap-3">
           <Image
-            loader={() => user?.imageUrl}
             src={`${user?.imageUrl}`}
             alt=""
             width={40}
