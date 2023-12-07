@@ -28,7 +28,7 @@ export function PromptTable() {
     const { data } = await supabase
       .from("Prompts")
       .select()
-      .eq("created_by", user?.emailAddresses);
+      .eq("created_by", user?.primaryEmailAddress?.emailAddress);
 
     const filteredArr = filterPromptObject(data || []);
     setPrompts(filteredArr);

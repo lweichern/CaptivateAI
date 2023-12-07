@@ -60,10 +60,12 @@ function PromptInput() {
     const promptQuestionPayload = messages[messages.length - 2]?.content;
     const promptAnswerPayload = messages[messages.length - 1]?.content;
 
+    console.log("userr: ", user);
+
     const { data } = await supabase
       .from("Prompts")
       .insert({
-        created_by: user?.emailAddresses,
+        created_by: user?.primaryEmailAddress?.emailAddress,
         prompt_question: promptQuestionPayload,
         prompt: promptAnswerPayload,
         emoji: emoji,
