@@ -18,8 +18,6 @@ export async function POST(request: Request) {
     wordLimit
   );
 
-  console.log("Prompt: ", messages[0].content)
-
   const response = await openai.createChatCompletion({
     model: "gpt-4",
     stream: true,

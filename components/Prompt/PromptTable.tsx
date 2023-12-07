@@ -10,6 +10,7 @@ import { formatDateTimeFromISO } from "@/lib/utils";
 import supabase from "@/utils/supabase";
 import { useEffect, useState } from "react";
 import { DeletePrompt, PromptDetails } from "./PromptDetails";
+import { useUser } from "@clerk/nextjs";
 
 export type PromptObject = {
   prompt: string;
@@ -21,9 +22,13 @@ export type PromptObject = {
 };
 
 export function PromptTable() {
+  const { user } = useUser();
   const [prompts, setPrompts] = useState<PromptObject[]>();
   async function fetchPrompt() {
-    const { data } = await supabase.from("Prompts").select();
+    const { data } = await supabase
+      .from("Prompts")
+      .select()
+      .eq("created_by", user?.emailAddresses);
 
     const filteredArr = filterPromptObject(data || []);
     setPrompts(filteredArr);

@@ -5,11 +5,10 @@ import { Button } from "./ui/button";
 import { navlinks } from "@/public/navlink";
 import SideNav from "./SideNav";
 import { motion, useScroll, useMotionValueEvent } from "framer-motion";
-import { useUser } from "@clerk/nextjs";
-import { ProfileDropdownMenu } from "./ProfileIcon";
+import { UserButton, useUser } from "@clerk/nextjs";
 
 function Navbar() {
-  const { isSignedIn, user } = useUser();
+  const { isSignedIn } = useUser();
   const [hidden, setHidden] = useState(false);
   const { scrollY } = useScroll();
 
@@ -52,7 +51,7 @@ function Navbar() {
           ))}
         </div>
         {isSignedIn ? (
-          <ProfileDropdownMenu />
+          <UserButton afterSignOutUrl="/" />
         ) : (
           <Button>
             <a href="/sign-in">Sign In</a>

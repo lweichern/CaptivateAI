@@ -20,8 +20,10 @@ import Map from "../Prompt/Map";
 import { CopyIcon, SaveIcon } from "../Prompt/Icons";
 import supabase from "@/utils/supabase";
 import { useToast } from "../ui/use-toast";
+import { UserButton, useUser } from "@clerk/nextjs";
 
 function PromptInput() {
+  const { user } = useUser();
   const { toast } = useToast();
   const [copyIcon, setCopyIcon] = useState(true);
   const style = useStyleStore((state) => state.style);
@@ -61,7 +63,7 @@ function PromptInput() {
     const { data } = await supabase
       .from("Prompts")
       .insert({
-        created_by: "jake",
+        created_by: user?.emailAddresses,
         prompt_question: promptQuestionPayload,
         prompt: promptAnswerPayload,
         emoji: emoji,
