@@ -94,10 +94,10 @@ function PromptInput() {
         <br />
         <form
           onSubmit={handleSubmit}
-          className="grid gap-2 lg:max-w-3xl mx-auto"
+          className="grid gap-2 lg:max-w-3xl mx-auto overflow-scroll"
         >
           <Textarea
-            placeholder="Describe your post..."
+            placeholder="Landed property in New York City, 1600 sqft, 2 bathrooms, 3 bedrooms..."
             onChange={handleInputChange}
             value={input}
             onKeyDown={handleKeyPress}
@@ -107,7 +107,7 @@ function PromptInput() {
             <DropdownStyles />
             <EmojiToggle />
             <InputWordLimit />
-            <Map />
+            {/* <Map /> */}
           </div>
           {isLoading ? (
             <LoadingButton />
