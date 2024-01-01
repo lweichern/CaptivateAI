@@ -57,3 +57,20 @@ export const styles = [
     label: "Trendy / Gen Z",
   },
 ];
+
+export const generators = [
+  {
+    title: "Real Estate/ Property",
+    description:
+      "An AI generator for real estate copywriting crafts compelling property descriptions by analyzing data and creating tailored narratives to attract potential buyers or renters.",
+    imageUrl: "/property-1.jpg",
+    targetUrl: "/prompt",
+  },
+  {
+    title: "E-Commerce",
+    description:
+      "An e-commerce AI crafts detailed product descriptions, aiding sellers in creating engaging online listings.",
+    imageUrl: "/e-commerce.jpg",
+    targetUrl: "/prompt",
+  },
+];

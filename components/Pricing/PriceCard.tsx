@@ -20,11 +20,11 @@ type PropType = {
 
 function PriceCard({ subscriptionType, price, features }: PropType) {
   return (
-    <SlideUpAnimation className="w-full">
+    <SlideUpAnimation className="w-full rounded-lg">
       <Card
         className={`${
           subscriptionType == "Pro" && "border-4 border-primary"
-        } w-full group h-full`}
+        } w-full group h-full rounded-sm`}
       >
         <CardHeader className="group-hover:skew-y-6 group-hover:translate-y-[15px] duration-100">
           <CardTitle>{subscriptionType}</CardTitle>

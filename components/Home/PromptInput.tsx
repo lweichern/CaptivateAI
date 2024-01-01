@@ -4,7 +4,6 @@ import { Button } from "@/components/ui/button";
 import { Textarea } from "@/components/ui/textarea";
 import { useChat } from "ai/react";
 import LoadingButton from "../LoadingButton";
-import { ArrowLeftFromLine } from "lucide-react";
 import { Separator } from "../ui/separator";
 import { useState } from "react";
 import { motion } from "framer-motion";
@@ -20,7 +19,7 @@ import Map from "../Prompt/Map";
 import { CopyIcon, SaveIcon } from "../Prompt/Icons";
 import supabase from "@/utils/supabase";
 import { useToast } from "../ui/use-toast";
-import { UserButton, useUser } from "@clerk/nextjs";
+import { useUser } from "@clerk/nextjs";
 
 function PromptInput() {
   const { user } = useUser();
@@ -29,6 +28,23 @@ function PromptInput() {
   const style = useStyleStore((state) => state.style);
   const emoji = useEmojiStore((state) => state.emoji);
   const wordLimit = useWordLimitStore((state) => state.wordLimit);
+
+  // Framer Motion variants for SVG
+  const pathVariants = {
+    hidden: {
+      opacity: 0,
+      pathLength: 0,
+    },
+    visible: {
+      opacity: 1,
+      pathLength: 1,
+      transition: {
+        duration: 1.5,
+        ease: "easeInOut",
+        delay: 0.2,
+      },
+    },
+  };
 
   // Vercel AI SDK (ai package) useChat()
   // useChat -> handles messages for us, user input, handling user submits, etc.
@@ -122,8 +138,34 @@ function PromptInput() {
       {messages.length == 0 ? (
         <>
           <p className="w-full flex-col items-center justify-center hidden lg:flex">
-            <ArrowLeftFromLine className=" animate-bounceLeft" />
             Start Prompting...
+            <motion.svg
+              id="edL6f4u2F5q1"
+              xmlns="http://www.w3.org/2000/svg"
+              viewBox="0 0 210 130"
+              shape-rendering="geometricPrecision"
+              text-rendering="geometricPrecision"
+              className=" w-[400px]"
+            >
+              <motion.path
+                d="M180.11075,71.29672c0,18.83187,2.20648,43.99438-17.30503,55.3761-14.13425,8.24498-45.7408,4.98421-35.99446-19.38163c6.92301-17.30752,50.25972,16.02654,46.37748,37.37887-5.27149,28.99321-63.99404,31.14905-85.83295,31.14905"
+                transform="translate(-68.763661-62.36502)"
+                fill="none"
+                stroke="#0b9d7e"
+                variants={pathVariants}
+                initial="hidden"
+                animate="visible"
+              />
+              <motion.path
+                d="M98.43101,165.43609c-1.54324,1.54324-11.82051,7.77452-11.07522,10.38302.54825,1.91888,11.14042,6.10566,13.15182,7.61421"
+                transform="translate(-68.76366-62.36502)"
+                fill="none"
+                stroke="#0b9d7e"
+                variants={pathVariants}
+                initial="hidden"
+                animate="visible"
+              />
+            </motion.svg>
           </p>
         </>
       ) : (

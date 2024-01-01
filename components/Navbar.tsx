@@ -6,6 +6,7 @@ import { navlinks } from "@/public/navlink";
 import SideNav from "./SideNav";
 import { motion, useScroll, useMotionValueEvent } from "framer-motion";
 import { UserButton, useUser } from "@clerk/nextjs";
+import Link from "next/link";
 
 function Navbar() {
   const { isSignedIn } = useUser();
@@ -41,13 +42,15 @@ function Navbar() {
         </div>
         <div className="flex items-center">
           {navlinks.map((link) => (
-            <Button
-              variant="link"
-              key={link.title}
-              className="text-md hidden md:block text-white hover:bg-slate-400 hover:no-underline"
-            >
-              <a href={link.path}>{link.title}</a>
-            </Button>
+            <Link href={link.path}>
+              <Button
+                variant="link"
+                key={link.title}
+                className="text-md hidden md:block text-white hover:bg-slate-400 hover:no-underline"
+              >
+                {link.title}
+              </Button>
+            </Link>
           ))}
         </div>
         {isSignedIn ? (

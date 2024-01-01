@@ -13,7 +13,7 @@ function Hero() {
         <div className=" text-center lg:text-left flex flex-col justify-center gap-3 lg:w-1/2">
           <h2 className="mb-6 text-3xl md:text-4xl lg:text-5xl font-semibold">
             Activate your{" "}
-            <span className=" underline decoration-primary">
+            <span className=" underline decoration-primary relative">
               social presence
             </span>{" "}
             with
