@@ -18,6 +18,7 @@ function Pricing() {
               "Limited to 10 prompts per account",
               "Limited styles",
             ]}
+            price={0}
           />
           <PriceCard
             subscriptionType="Pro"

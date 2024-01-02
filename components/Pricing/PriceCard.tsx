@@ -42,9 +42,15 @@ function PriceCard({ subscriptionType, price, features }: PropType) {
             ))}
           </ul>
         </CardContent>
-        {price && (
+        {price !== 0 ? (
           <CardFooter>
             <Button>Buy Now</Button>
+          </CardFooter>
+        ) : (
+          <CardFooter>
+            <Button className="bg-transparent border-primary border-2">
+              Free Trial
+            </Button>
           </CardFooter>
         )}
       </Card>

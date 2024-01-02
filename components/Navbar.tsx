@@ -42,7 +42,7 @@ function Navbar() {
         </div>
         <div className="flex items-center">
           {navlinks.map((link) => (
-            <Link href={link.path}>
+            <Link href={link.path} key={link.title}>
               <Button
                 variant="link"
                 key={link.title}

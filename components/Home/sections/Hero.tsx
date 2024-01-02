@@ -24,7 +24,7 @@ function Hero() {
             Use AI to generate captions and descriptions for your products.
           </span>
           <Button className=" w-fit mx-auto lg:mx-0 mt-3 text-md font-semibold">
-            <Link href={"/prompt"}>Try For Free</Link>
+            <Link href={"/prompt"}>Get Started for free</Link>
           </Button>
         </div>
         <div className="flex-col hidden lg:flex lg:w-1/2 items-end">
