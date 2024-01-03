@@ -58,6 +58,26 @@ export const styles = [
   },
 ];
 
+export const faqs = [
+  {
+    question:
+      "What kind of data or inputs does your tool require to create effective copy?",
+    answer:
+      "You just have to input the characteristics of your product. \nExample 1: Landed property in Paris, 1200 sqft, 3 rooms, 2 bathrooms. \nExample 2: A unisex white shoe suitable for any types of fashion to elevate our looks and style.",
+  },
+  {
+    question:
+      "Can I customize the tone and style of the generated copy to match my brand's voice?",
+    answer:
+      "Yes, we provide a variety of tones inclusing Professional, Friendly, Humorous, Gen Z/Trendy and many more. In addition, the users are also able to choose the existence of emoji and limit the number of words in their description.",
+  },
+  {
+    question: "Can I save the results and view it later just like ChatGPT?",
+    answer:
+      "Yes, we do provide the save and copy functionality on the top right of the prompt. The saved results will be displayed in a table format when clicked on the bottom left icon.",
+  },
+];
+
 export const generators = [
   {
     title: "Real Estate/ Property",

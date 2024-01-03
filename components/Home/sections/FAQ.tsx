@@ -8,9 +8,18 @@ import {
   AccordionTrigger,
 } from "@/components/ui/accordion";
 import { motion } from "framer-motion";
+import { faqs } from "@/lib/data";
 
 const accordionHeaderClassname = "text-lg";
-const accordionContentClassname = "text-md";
+const accordionContentClassname = "text-md text-primary whitespace-pre-wrap";
+
+type Faq = {
+  faq: {
+    question: string;
+    answer: string;
+  };
+  index: number;
+};
 
 function FAQ() {
   return (
@@ -19,36 +28,26 @@ function FAQ() {
         <>
           <h2 className="text-4xl text-center font-semibold mb-3">FAQ</h2>
           <Accordion type="single" collapsible className="w-full">
-            <AccordionItem value="item-1">
-              <AccordionTrigger className={accordionHeaderClassname}>
-                Is it accessible?
-              </AccordionTrigger>
-              <AccordionContent className={accordionContentClassname}>
-                Yes. It adheres to the WAI-ARIA design pattern.
-              </AccordionContent>
-            </AccordionItem>
-            <AccordionItem value="item-2">
-              <AccordionTrigger className={accordionHeaderClassname}>
-                Is it styled?
-              </AccordionTrigger>
-              <AccordionContent className={accordionContentClassname}>
-                Yes. It comes with default styles that matches the other
-                components&apos; aesthetic.
-              </AccordionContent>
-            </AccordionItem>
-            <AccordionItem value="item-3">
-              <AccordionTrigger className={accordionHeaderClassname}>
-                Is it animated?
-              </AccordionTrigger>
-              <AccordionContent className={accordionContentClassname}>
-                Yes. It&apos;s animated by default, but you can disable it if
-                you prefer.
-              </AccordionContent>
-            </AccordionItem>
+            {faqs.map((faq, index) => (
+              <FAQQuestions faq={faq} index={index} key={index} />
+            ))}
           </Accordion>
         </>
       </SlideUpAnimation>
     </motion.section>
+  );
+}
+
+function FAQQuestions({ faq, index }: Faq) {
+  return (
+    <AccordionItem value={`item-${index}`}>
+      <AccordionTrigger className={accordionHeaderClassname}>
+        {faq.question}
+      </AccordionTrigger>
+      <AccordionContent className={accordionContentClassname}>
+        {faq.answer}
+      </AccordionContent>
+    </AccordionItem>
   );
 }
 
